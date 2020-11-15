@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
-
+    
+    var userIdtextFeild = UITextField()
+      var passIdtextFeild = UITextField()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         self.hideKeyboardWhenTappedAround() 
         setupViews()
         // Do any additional setup after loading the view.
@@ -25,27 +30,27 @@ class SignUpViewController: UIViewController {
            
            let imageView = makeImageView(named: "iconImg")
            let appTitle = makeTitleLabel(withText: "Welcome to Bachelors Food!",withSize: view.bounds.width/18 )
-           let userIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Email Id")
-           let passIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Password")
-           let LogInBtn = makeButton(withText: "Log In")
+            userIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Email Id")
+            passIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Password")
+           let signInBtn = makeButton(withText: "Sign In")
+        signInBtn.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
+            
            
            
-           let signin = makeLabel(withText: "Dont have an account ? ")
-           let signinBtn  = makeButtonLink(withText: "Sign In")
+           let signin = makeLabel(withText: "Already have an account ? ")
+           let loginBtn  = makeButtonLink(withText: "Log In")
            
            stackView.addArrangedSubview(signin)
-           stackView.addArrangedSubview(signinBtn)
+           stackView.addArrangedSubview(loginBtn)
            
            
            view.addSubview(imageView)
            view.addSubview(appTitle)
            view.addSubview(userIdtextFeild)
            view.addSubview(passIdtextFeild)
-           view.addSubview(LogInBtn)
+           view.addSubview(signInBtn)
            view.addSubview(stackView)
-   //        view.addSubview(signin)
-   //        view.addSubview(signinBtn)
-           
+
            
            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -94,40 +99,68 @@ class SignUpViewController: UIViewController {
 
 
              UIView.animate(withDuration: 0.5, delay: 2, options: [.curveEaseOut], animations: {
-                       userIdtextFeild.center.x += self.view.bounds.width
-                       passIdtextFeild.center.x += self.view.bounds.width
-           //                 self.view.layoutIfNeeded()
+                self.userIdtextFeild.center.x += self.view.bounds.width
+                self.passIdtextFeild.center.x += self.view.bounds.width
+         
                       }, completion: nil)
                    UIView.animate(withDuration: 0.5, delay: 2.5, options: [.curveEaseOut], animations: {
            //                    userIdtextFeild.center.x += self.view.bounds.width
-                               passIdtextFeild.center.x += self.view.bounds.width
+                    self.passIdtextFeild.center.x += self.view.bounds.width
                    //                 self.view.layoutIfNeeded()
                               }, completion: nil)
    //
            
-           LogInBtn.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
-           LogInBtn.heightAnchor.constraint(equalTo: LogInBtn.widthAnchor, multiplier: 0.25).isActive = true
-           LogInBtn.topAnchor.constraint(equalTo: passIdtextFeild.bottomAnchor, constant: 30).isActive = true
-           LogInBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+           signInBtn.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
+           signInBtn.heightAnchor.constraint(equalTo: signInBtn.widthAnchor, multiplier: 0.25).isActive = true
+           signInBtn.topAnchor.constraint(equalTo: passIdtextFeild.bottomAnchor, constant: 30).isActive = true
+           signInBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
            
   
 
-           stackView.topAnchor.constraint(equalTo: LogInBtn.bottomAnchor, constant: 33).isActive = true
+           stackView.topAnchor.constraint(equalTo: signInBtn.bottomAnchor, constant: 33).isActive = true
            stackView.centerXAnchor.constraint(equalTo :view.centerXAnchor).isActive = true
           
 
            
        }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func signInTapped()
+    {
+        if(userIdtextFeild.text!.isEmpty)
+        {
+            let alert = UIAlertController(title: "Email-ID Feild cannot be empty", message: "", preferredStyle: .alert)
+                     
+                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                     
+                     
+                     self.present(alert, animated: true)
+        }else if(passIdtextFeild.text!.isEmpty)
+        {
+            let alert = UIAlertController(title: "Password Feild cannot be empty", message: "", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            
+            self.present(alert, animated: true)
+            
+        }else
+        {
+            Auth.auth().createUser(withEmail: userIdtextFeild.text!, password: passIdtextFeild.text!) { (authRes, err) in
+                
+                guard let user = authRes?.user , err==nil else {
+                    
+                    print("Errror \(err?.localizedDescription)")
+                    return
+                }
+                
+                print("Acc created Successfully")
+            }
+            
+        }
+        
+        
+        
     }
-    */
+
+ 
 
 }
