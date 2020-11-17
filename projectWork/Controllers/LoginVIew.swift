@@ -9,13 +9,10 @@
 import UIKit
 import Firebase
 
-protocol DataDelegate {
-    func printRes(newArray : String)
-}
 
 class ViewController: UIViewController {
     
-    var resArr = [Recepie]()
+   
     
     var userIdtextFeild = UITextField()
     var passIdtextFeild = UITextField()
@@ -23,8 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        APIFunctions.functions.delegate = self
-        APIFunctions.functions.fetchRecepies()
+  
       
 //        print(resArr)
         // Do any additional setup after loading the view.
@@ -202,20 +198,4 @@ extension UIViewController {
     
     
 }
-extension ViewController : DataDelegate {
-    
-    func printRes(newArray: String) {
-       
-        do
-        {
-//            print(newArray.data(using: .utf8))
-            resArr = try JSONDecoder().decode([Recepie].self,from: newArray.data(using: .utf8)!)
-            print(resArr[0]._id)
-        }
-        catch{
-            print(" this is the error \(error)")
-        }
-    }
-    
-    
-}
+

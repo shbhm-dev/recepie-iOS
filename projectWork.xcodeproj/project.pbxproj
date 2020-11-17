@@ -17,6 +17,9 @@
 		7C6DD904255451C20084D7BD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6DD903255451C20084D7BD /* SignUpViewController.swift */; };
 		7CC6F72B2561B063001F2232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6F72A2561B063001F2232 /* GoogleService-Info.plist */; };
 		7CC6F72D2561CF3D001F2232 /* APIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F72C2561CF3D001F2232 /* APIFunctions.swift */; };
+		7CC6F72F256406FC001F2232 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F72E256406FC001F2232 /* CustomCollectionViewCell.swift */; };
+		7CC6F73125640707001F2232 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F73025640707001F2232 /* secondViewController.swift */; };
+		7CC6F7332564070E001F2232 /* AllRecepiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F7322564070E001F2232 /* AllRecepiesViewController.swift */; };
 		9A10FD2F3744253CB343867C /* Pods_projectWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E35BE4919CA50459B61C79C /* Pods_projectWork.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,9 @@
 		7C6DD903255451C20084D7BD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7CC6F72A2561B063001F2232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC6F72C2561CF3D001F2232 /* APIFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFunctions.swift; sourceTree = "<group>"; };
+		7CC6F72E256406FC001F2232 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		7CC6F73025640707001F2232 /* secondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
+		7CC6F7322564070E001F2232 /* AllRecepiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecepiesViewController.swift; sourceTree = "<group>"; };
 		8B548780E36E273250360C99 /* Pods-projectWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-projectWork.debug.xcconfig"; path = "Target Support Files/Pods-projectWork/Pods-projectWork.debug.xcconfig"; sourceTree = "<group>"; };
 		9E35BE4919CA50459B61C79C /* Pods_projectWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_projectWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCDCE5FFA4ED2B24C66FDB4 /* Pods-projectWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-projectWork.release.xcconfig"; path = "Target Support Files/Pods-projectWork/Pods-projectWork.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 			children = (
 				7C6DD8F02553C2D40084D7BD /* LoginVIew.swift */,
 				7C6DD903255451C20084D7BD /* SignUpViewController.swift */,
+				7CC6F72E256406FC001F2232 /* CustomCollectionViewCell.swift */,
+				7CC6F73025640707001F2232 /* secondViewController.swift */,
+				7CC6F7322564070E001F2232 /* AllRecepiesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -227,7 +236,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC6F7332564070E001F2232 /* AllRecepiesViewController.swift in Sources */,
+				7CC6F73125640707001F2232 /* secondViewController.swift in Sources */,
 				7C6DD8F12553C2D40084D7BD /* LoginVIew.swift in Sources */,
+				7CC6F72F256406FC001F2232 /* CustomCollectionViewCell.swift in Sources */,
 				7C6DD8ED2553C2D30084D7BD /* AppDelegate.swift in Sources */,
 				7C6DD9012553C5AF0084D7BD /* Factories.swift in Sources */,
 				7C6DD8EF2553C2D30084D7BD /* SceneDelegate.swift in Sources */,

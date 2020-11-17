@@ -32,7 +32,6 @@ class APIFunctions {
          
             
             let data = String(data : response.data!,encoding: .utf8)
-       
             self.delegate?.printRes(newArray : data!)
             
         }
