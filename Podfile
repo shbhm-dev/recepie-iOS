@@ -8,5 +8,6 @@ target 'projectWork' do
   # Pods for projectWork
 	pod 'Firebase'
 	pod 'Firebase/Auth'
+	pod 'Alamofire', '~> 5.2'
 
 end
