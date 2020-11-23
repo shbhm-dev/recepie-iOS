@@ -170,7 +170,7 @@ class ViewController: UIViewController {
                 
                 if(Auth.auth().currentUser != nil)
                 {
-                    print(Auth.auth().currentUser?.email)
+                    print(Auth.auth().currentUser?.uid)
                 }
             }
             

@@ -16,7 +16,13 @@ class AllRecepiesViewController: UIViewController , UICollectionViewDelegate,UIC
      var collectionView : UICollectionView!
     var resArr = [Recepie]()
     @objc func btn_clicked(_ sender: UIBarButtonItem) {
-        // Do something
+        
+        let vc = addViewController()
+//        vc.modalPresentationStyle = .none
+        vc.modalPresentationStyle = .currentContext
+                   self.present(vc,animated: true,completion: nil)
+        
+        
     
     }
 
