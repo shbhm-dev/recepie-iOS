@@ -9,11 +9,17 @@
 import UIKit
 
 class addViewController: UIViewController {
+    
           let button   = UIButton(type: UIButton.ButtonType.custom) as UIButton
       let button1   = UIButton(type: UIButton.ButtonType.custom) as UIButton
     var Comptag : Int?
+    var label: UILabel?
+    var showTheWorld :  UILabel?
+    var recepieSteps : UILabel?
+         
     override func viewDidLoad() {
         super.viewDidLoad()
+          self.hideKeyboardWhenTappedAround()
         self.view.backgroundColor = .white
         
         let navigationBar = UINavigationBar()
@@ -37,15 +43,15 @@ class addViewController: UIViewController {
         navigationBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         
-        let label = makeTitleLabel(withText: "What have you made? 😍", withSize: 25)
-        let showTheWorld = makeTitleLabel(withText: "Show the World what you have made!", withSize: 25)
-        let recepieSteps = makeTitleLabel(withText: "Share your amazing recepie 😋", withSize: 23)
+         label = makeTitleLabel(withText: "What have you made? 😍", withSize: 25)
+         showTheWorld = makeTitleLabel(withText: "Show the World what you have made!", withSize: 25)
+         recepieSteps = makeTitleLabel(withText: "Share your amazing recepie 😋", withSize: 23)
         
-        view.addSubview(label)
-        view.addSubview(showTheWorld)
+        view.addSubview(label!)
+        view.addSubview(showTheWorld!)
         
-        label.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 40).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        label!.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 40).isActive = true
+        label!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         //        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         
@@ -72,14 +78,16 @@ class addViewController: UIViewController {
         submitbtn.backgroundColor = .systemRed
         submitbtn.setTitle("Submit", for: .normal)
         
+         submitbtn.addTarget(self, action: #selector(submitClicked), for: .touchUpInside)
         
-        txtFeild.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20).isActive = true
+        
+        txtFeild.topAnchor.constraint(equalTo: label!.bottomAnchor, constant: 20).isActive = true
         txtFeild.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         txtFeild.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
-        showTheWorld.topAnchor.constraint(equalTo: txtFeild.bottomAnchor, constant: 40).isActive = true
-        showTheWorld.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        showTheWorld.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        showTheWorld!.topAnchor.constraint(equalTo: txtFeild.bottomAnchor, constant: 40).isActive = true
+        showTheWorld!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        showTheWorld!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
   
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -100,27 +108,27 @@ class addViewController: UIViewController {
         button1.setImage(image, for: UIControl.State.normal)
         //        button1.setImage(UIImage(named: "add.png"), for: UIControl.State.normal)
         self.view.addSubview(button1)
-        self.view.addSubview(recepieSteps)
+        self.view.addSubview(recepieSteps!)
         self.view.addSubview(submitbtn)
         
         
         
-        button.topAnchor.constraint(equalTo: showTheWorld.bottomAnchor, constant: 10).isActive = true
+        button.topAnchor.constraint(equalTo: showTheWorld!.bottomAnchor, constant: 10).isActive = true
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
-        button1.topAnchor.constraint(equalTo: showTheWorld.bottomAnchor, constant: 10).isActive = true
+        button1.topAnchor.constraint(equalTo: showTheWorld!.bottomAnchor, constant: 10).isActive = true
         button1.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 10).isActive = true
         button1.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button1.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         
-        recepieSteps.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 40).isActive = true
-        recepieSteps.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        recepieSteps.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        recepieSteps!.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 40).isActive = true
+        recepieSteps!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        recepieSteps!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
-        recepietxtFeild.topAnchor.constraint(equalTo: recepieSteps.bottomAnchor, constant: 20).isActive = true
+        recepietxtFeild.topAnchor.constraint(equalTo: recepieSteps!.bottomAnchor, constant: 20).isActive = true
            recepietxtFeild.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
            recepietxtFeild.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
 //        recepietxtFeild.borderStyle = UITextField.BorderStyle.roundedRect
@@ -142,6 +150,19 @@ class addViewController: UIViewController {
         
         showImagePicker(tag:sender.tag)
       
+        
+    }
+    
+    @objc func submitClicked()
+    {
+        if(label!.text!.isEmpty || recepieSteps!.text!.isEmpty)
+        {
+            
+        }else
+        {
+            APIFunctions.functions.addRecepies(userId: "123", userName: "shbh", title: label!.text!, steps: recepieSteps!.text!)
+            
+        }
         
     }
     
