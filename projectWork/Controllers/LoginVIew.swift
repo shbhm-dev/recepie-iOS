@@ -12,7 +12,7 @@ import Firebase
 
 class ViewController: UIViewController {
     
-   
+    
     
     var userIdtextFeild = UITextField()
     var passIdtextFeild = UITextField()
@@ -20,10 +20,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-  
-      
-//        print(resArr)
-        // Do any additional setup after loading the view.
         setupViews()
     }
     
@@ -31,26 +27,24 @@ class ViewController: UIViewController {
     func setupViews()
     {
         let stackView = makeStackView(withOrientation : .horizontal)
-        
-        
-        
         let imageView = makeImageView(named: "iconImg")
         let appTitle = makeTitleLabel(withText: "Welcome to Bachelors Food!",withSize: view.bounds.width/18 )
-        userIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Email Id")
-        passIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Password")
-        let LogInBtn = makeButton(withText: "Log In")
-        LogInBtn.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
-        
-        
         let signin = makeLabel(withText: "Dont have an account ? ")
         let signinBtn  = makeButtonLink(withText: "Sign In")
+        let LogInBtn = makeButton(withText: "Log In")
         
+        
+        userIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Email Id")
+        passIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Password")
+        
+        LogInBtn.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         signinBtn.addTarget(self, action: #selector(signinClicked), for: .touchUpInside)
+        
+        
+        
         
         stackView.addArrangedSubview(signin)
         stackView.addArrangedSubview(signinBtn)
-        
-        
         view.addSubview(imageView)
         view.addSubview(appTitle)
         view.addSubview(userIdtextFeild)
@@ -59,6 +53,7 @@ class ViewController: UIViewController {
         view.addSubview(stackView)
         
         
+        //IMAGE VIEW CONSTRAINTS
         
         imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -69,22 +64,12 @@ class ViewController: UIViewController {
         appTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         
+        // USER ID | PASSWORD TEXT FEILD CONSTRAINTS
         
         userIdtextFeild.center.x = view.center.x // Place it in the center x of the view.
         userIdtextFeild.center.x -= view.bounds.width
         passIdtextFeild.center.x = view.center.x // Place it in the center x of the view.
         passIdtextFeild.center.x -= view.bounds.width
-        
-        appTitle.alpha = 0
-        appTitle.center.x = view.center.x
-        appTitle.center.x -= view.bounds.width
-        UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseOut], animations: {
-            
-            appTitle.alpha = 1.5
-            self.view.layoutIfNeeded()
-            
-        }, completion: nil)
-        
         
         userIdtextFeild.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         userIdtextFeild.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -93,6 +78,22 @@ class ViewController: UIViewController {
         passIdtextFeild.topAnchor.constraint(equalTo: userIdtextFeild.bottomAnchor, constant: 10).isActive = true
         passIdtextFeild.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passIdtextFeild.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
+        
+        
+        appTitle.alpha = 0
+        appTitle.center.x = view.center.x
+        appTitle.center.x -= view.bounds.width
+        
+        // LOGIN ANIMATIONS
+        
+        UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseOut], animations: {
+            
+            appTitle.alpha = 1.5
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
+        
+        
         
         
         UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseOut], animations: {
@@ -117,6 +118,9 @@ class ViewController: UIViewController {
         }, completion: nil)
         //
         
+        
+        //LOG IN BUTTON CONSTRAINTS
+        
         LogInBtn.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
         LogInBtn.heightAnchor.constraint(equalTo: LogInBtn.widthAnchor, multiplier: 0.25).isActive = true
         LogInBtn.topAnchor.constraint(equalTo: passIdtextFeild.bottomAnchor, constant: 30).isActive = true
@@ -140,6 +144,9 @@ class ViewController: UIViewController {
     
     @objc func loginTapped()
     {
+        // CHECKS FOR LOGIN
+        
+        
         if(userIdtextFeild.text!.isEmpty)
         {
             let alert = UIAlertController(title: "Email-ID Feild cannot be empty", message: "", preferredStyle: .alert)
@@ -159,10 +166,11 @@ class ViewController: UIViewController {
             
         }else
         {
+            // LOG IN USING FIREBASE AUTHENTICATION
             
             Auth.auth().signIn(withEmail: userIdtextFeild.text!, password: passIdtextFeild.text!) { [weak self] authResult, err in
-              guard let strongSelf = self else { return }
-              
+                guard let strongSelf = self else { return }
+                
                 if let err = err {
                     print(err.localizedDescription)
                     return
@@ -170,7 +178,7 @@ class ViewController: UIViewController {
                 
                 if(Auth.auth().currentUser != nil)
                 {
-                    print(Auth.auth().currentUser?.uid)
+                    
                 }
             }
             
@@ -192,10 +200,5 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    
-    
-    
-    
 }
 

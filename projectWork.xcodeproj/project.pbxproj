@@ -18,7 +18,7 @@
 		7CC6F72B2561B063001F2232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6F72A2561B063001F2232 /* GoogleService-Info.plist */; };
 		7CC6F72D2561CF3D001F2232 /* APIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F72C2561CF3D001F2232 /* APIFunctions.swift */; };
 		7CC6F72F256406FC001F2232 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F72E256406FC001F2232 /* CustomCollectionViewCell.swift */; };
-		7CC6F73125640707001F2232 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F73025640707001F2232 /* secondViewController.swift */; };
+		7CC6F73125640707001F2232 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F73025640707001F2232 /* SecondViewController.swift */; };
 		7CC6F7332564070E001F2232 /* AllRecepiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F7322564070E001F2232 /* AllRecepiesViewController.swift */; };
 		7CC6F73525645404001F2232 /* addViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6F73425645404001F2232 /* addViewController.swift */; };
 		7CC6F737256455AB001F2232 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6F736256455AB001F2232 /* add.png */; };
@@ -39,7 +39,7 @@
 		7CC6F72A2561B063001F2232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC6F72C2561CF3D001F2232 /* APIFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFunctions.swift; sourceTree = "<group>"; };
 		7CC6F72E256406FC001F2232 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		7CC6F73025640707001F2232 /* secondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
+		7CC6F73025640707001F2232 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		7CC6F7322564070E001F2232 /* AllRecepiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecepiesViewController.swift; sourceTree = "<group>"; };
 		7CC6F73425645404001F2232 /* addViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addViewController.swift; sourceTree = "<group>"; };
 		7CC6F736256455AB001F2232 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
@@ -81,6 +81,7 @@
 		7C6DD8EB2553C2D30084D7BD /* projectWork */ = {
 			isa = PBXGroup;
 			children = (
+				7CDF176E2573738A009E0784 /* API FUNCTIONS */,
 				7C6DD9022554506C0084D7BD /* Controllers */,
 				7C6DD8EC2553C2D30084D7BD /* AppDelegate.swift */,
 				7C6DD8EE2553C2D30084D7BD /* SceneDelegate.swift */,
@@ -88,9 +89,7 @@
 				7C6DD8F52553C2D80084D7BD /* Assets.xcassets */,
 				7C6DD8F72553C2D80084D7BD /* LaunchScreen.storyboard */,
 				7C6DD8FA2553C2D80084D7BD /* Info.plist */,
-				7C6DD9002553C5AF0084D7BD /* Factories.swift */,
 				7CC6F72A2561B063001F2232 /* GoogleService-Info.plist */,
-				7CC6F72C2561CF3D001F2232 /* APIFunctions.swift */,
 				7CC6F736256455AB001F2232 /* add.png */,
 			);
 			path = projectWork;
@@ -102,11 +101,20 @@
 				7C6DD8F02553C2D40084D7BD /* LoginVIew.swift */,
 				7C6DD903255451C20084D7BD /* SignUpViewController.swift */,
 				7CC6F72E256406FC001F2232 /* CustomCollectionViewCell.swift */,
-				7CC6F73025640707001F2232 /* secondViewController.swift */,
+				7CC6F73025640707001F2232 /* SecondViewController.swift */,
 				7CC6F73425645404001F2232 /* addViewController.swift */,
 				7CC6F7322564070E001F2232 /* AllRecepiesViewController.swift */,
+				7C6DD9002553C5AF0084D7BD /* Factories.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7CDF176E2573738A009E0784 /* API FUNCTIONS */ = {
+			isa = PBXGroup;
+			children = (
+				7CC6F72C2561CF3D001F2232 /* APIFunctions.swift */,
+			);
+			path = "API FUNCTIONS";
 			sourceTree = "<group>";
 		};
 		A082E84683277DD8A12625D6 /* Pods */ = {
@@ -245,7 +253,7 @@
 			files = (
 				7CC6F73525645404001F2232 /* addViewController.swift in Sources */,
 				7CC6F7332564070E001F2232 /* AllRecepiesViewController.swift in Sources */,
-				7CC6F73125640707001F2232 /* secondViewController.swift in Sources */,
+				7CC6F73125640707001F2232 /* SecondViewController.swift in Sources */,
 				7C6DD8F12553C2D40084D7BD /* LoginVIew.swift in Sources */,
 				7CC6F72F256406FC001F2232 /* CustomCollectionViewCell.swift in Sources */,
 				7C6DD8ED2553C2D30084D7BD /* AppDelegate.swift in Sources */,

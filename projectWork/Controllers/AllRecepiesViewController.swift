@@ -12,49 +12,41 @@ protocol DataDelegate {
 }
 
 class AllRecepiesViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource {
-  
-     var collectionView : UICollectionView!
-    var resArr = [Recepie]()
-    @objc func btn_clicked(_ sender: UIBarButtonItem) {
-        
-        let vc = addViewController()
-//        vc.modalPresentationStyle = .none
-        vc.modalPresentationStyle = .currentContext
-                   self.present(vc,animated: true,completion: nil)
-        
-        
     
+    var collectionView : UICollectionView!
+    var resArr = [Recepie]()
+    
+    
+    // BUTTON ACTION TO PRESENT VIEW CONTROLLER TO ADD RECEPIES
+    @objc func btn_clicked(_ sender: UIBarButtonItem) {
+        let vc = addViewController()
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: nil)
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIFunctions.functions.delegate = self
-          APIFunctions.functions.fetchRecepies()
         
-        print(resArr)
+        // API FUCNTION CALL
+        APIFunctions.functions.delegate = self
+        APIFunctions.functions.fetchRecepies()
+        
+        
         
         let navigationBar = UINavigationBar()
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
         navigationBar.backgroundColor = .red
-        
-        
         let navigationItem = UINavigationItem()
         navigationItem.title = "Recepies "
-        
-        
-        
         let rightButton = UIBarButtonItem(title: "Post Recepie", style: .done, target: self, action: #selector(AllRecepiesViewController.btn_clicked(_:)))
-        
         navigationItem.rightBarButtonItem = rightButton
-        
-        
         navigationBar.items = [navigationItem]
-        
         self.view.addSubview(navigationBar)
         navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         navigationBar.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         navigationBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -62,16 +54,19 @@ class AllRecepiesViewController: UIViewController , UICollectionViewDelegate,UIC
         layout.minimumInteritemSpacing = 3
         layout.itemSize = CGSize(width: (view.frame.size.width/2)-4, height: (view.frame.size.width/2)-4)
         
-          collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        //CREATING A CUSTOM COLLECTION VIEW
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
         collectionView.delegate = self
-
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         
-     
+        
+        // ADDING COLLECTION VIEW CONSTRAINTS
         collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor,constant: 10).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 2).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -2).isActive = true
@@ -80,6 +75,8 @@ class AllRecepiesViewController: UIViewController , UICollectionViewDelegate,UIC
         
         
     }
+    
+    // COLELCTION VIEW DATA DELEGATE FUCNTIONS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         resArr.count
     }
@@ -96,20 +93,20 @@ class AllRecepiesViewController: UIViewController , UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = secondViewController()
         vc.modalPresentationStyle = .overCurrentContext
-            self.present(vc,animated: true,completion: nil)
+        self.present(vc,animated: true,completion: nil)
     }
     
     
 }
+
 extension AllRecepiesViewController : DataDelegate {
     
     func printRes(newArray: String) {
-       
+        
         do
         {
-//            print(newArray.data(using: .utf8))
+            
             resArr = try JSONDecoder().decode([Recepie].self,from: newArray.data(using: .utf8)!)
-//            collectionView(collectionView, numberOfItemsInSection: resArr.count)
             print(resArr)
         }
         catch{

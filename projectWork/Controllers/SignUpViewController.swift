@@ -15,33 +15,34 @@ class SignUpViewController: UIViewController {
     var userName = UITextField()
     var userIdtextFeild = UITextField()
     var passIdtextFeild = UITextField()
+    var uuid : String!
+    var username : String!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.hideKeyboardWhenTappedAround() 
         setupViews()
-        // Do any additional setup after loading the view.
+        
     }
     
     func setupViews()
     {
         let stackView = makeStackView(withOrientation : .horizontal)
-        
-        
-        
         let imageView = makeImageView(named: "iconImg")
         let appTitle = makeTitleLabel(withText: "Welcome to Bachelors Food!",withSize: view.bounds.width/18 )
+        let signInBtn = makeButton(withText: "Sign In")
+        let signin = makeLabel(withText: "Already have an account ? ")
+        let loginBtn  = makeButtonLink(withText: "Log In")
         
         userName = makeTextFeild(withplaceHolder: "Enter User Name")
         userIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Email Id")
         passIdtextFeild = makeTextFeild(withplaceHolder: "Enter the Password")
-        let signInBtn = makeButton(withText: "Sign In")
+        
         signInBtn.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
         
         
-        
-        let signin = makeLabel(withText: "Already have an account ? ")
-        let loginBtn  = makeButtonLink(withText: "Log In")
         
         stackView.addArrangedSubview(signin)
         stackView.addArrangedSubview(loginBtn)
@@ -56,6 +57,9 @@ class SignUpViewController: UIViewController {
         view.addSubview(stackView)
         
         
+        
+        // APP ICON CONSTRAINTS
+        
         imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
@@ -63,15 +67,32 @@ class SignUpViewController: UIViewController {
         
         appTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20).isActive = true
         appTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        //        appTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        //         appTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
         userName.center.x = view.center.x
         userName.center.x -= view.bounds.width
-        userIdtextFeild.center.x = view.center.x // Place it in the center x of the view.
+        
+        // USERID | PASSWORD TEXTFEILD CONSTRAINTS
+        userIdtextFeild.center.x = view.center.x
         userIdtextFeild.center.x -= view.bounds.width
-        passIdtextFeild.center.x = view.center.x // Place it in the center x of the view.
+        passIdtextFeild.center.x = view.center.x
         passIdtextFeild.center.x -= view.bounds.width
+        userIdtextFeild.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 10).isActive = true
+        userIdtextFeild.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        userIdtextFeild.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
+        passIdtextFeild.topAnchor.constraint(equalTo: userIdtextFeild.bottomAnchor, constant: 10).isActive = true
+        passIdtextFeild.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        passIdtextFeild.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
+        
+        
+        userName.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        userName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        userName.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
+        
+        
+        
+        
+        
+        // ANIMATIONS CODE
         
         appTitle.alpha = 0
         appTitle.center.x = view.center.x
@@ -82,21 +103,6 @@ class SignUpViewController: UIViewController {
             self.view.layoutIfNeeded()
             
         }, completion: nil)
-        
-        
-        userName.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        userName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        userName.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
-        
-        
-           userIdtextFeild.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 10).isActive = true
-            userIdtextFeild.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            userIdtextFeild.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
-        
-       
-        passIdtextFeild.topAnchor.constraint(equalTo: userIdtextFeild.bottomAnchor, constant: 10).isActive = true
-        passIdtextFeild.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        passIdtextFeild.widthAnchor.constraint(equalToConstant: view.bounds.width/1.5).isActive = true
         
         
         UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseOut], animations: {
@@ -119,15 +125,15 @@ class SignUpViewController: UIViewController {
             self.passIdtextFeild.center.x += self.view.bounds.width
             //                 self.view.layoutIfNeeded()
         }, completion: nil)
-        //
+        
+        
+        
+        //SIGN IN BUTTON CONSTRAINTS
         
         signInBtn.widthAnchor.constraint(equalToConstant: view.bounds.width/2).isActive = true
         signInBtn.heightAnchor.constraint(equalTo: signInBtn.widthAnchor, multiplier: 0.25).isActive = true
         signInBtn.topAnchor.constraint(equalTo: passIdtextFeild.bottomAnchor, constant: 30).isActive = true
         signInBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        
-        
         stackView.topAnchor.constraint(equalTo: signInBtn.bottomAnchor, constant: 33).isActive = true
         stackView.centerXAnchor.constraint(equalTo :view.centerXAnchor).isActive = true
         
@@ -139,18 +145,13 @@ class SignUpViewController: UIViewController {
         if(userIdtextFeild.text!.isEmpty || userName.text!.isEmpty)
         {
             let alert = UIAlertController(title: "Email-ID/ Username Feild cannot be empty", message: "", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            
-            
             self.present(alert, animated: true)
+            
         }else if(passIdtextFeild.text!.isEmpty)
         {
             let alert = UIAlertController(title: "Password Feild cannot be empty", message: "", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            
-            
             self.present(alert, animated: true)
             
         }else
@@ -162,11 +163,14 @@ class SignUpViewController: UIViewController {
                     print("Errror \(err?.localizedDescription)")
                     return
                 }
+                self.uuid = user.uid
+                self.username = self.userName.text!
+                APIFunctions.functions.addUser(userId: self.uuid, username: self.username!)
                 
-                   let vc = AllRecepiesViewController()
-                //        vc.modalPresentationStyle = .none
-                        vc.modalPresentationStyle = .currentContext
-                                   self.present(vc,animated: true,completion: nil)
+                // PRESENTING
+                let vc = AllRecepiesViewController()
+                vc.modalPresentationStyle = .currentContext
+                self.present(vc,animated: true,completion: nil)
             }
             
         }

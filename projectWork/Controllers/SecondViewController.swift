@@ -17,7 +17,7 @@ class secondViewController: UIViewController {
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeDown.direction = UISwipeGestureRecognizer.Direction.down
         self.view.addGestureRecognizer(swipeDown)
-        // Do any additional setup after loading the view.
+      
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
