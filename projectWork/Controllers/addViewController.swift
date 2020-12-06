@@ -16,13 +16,17 @@ class addViewController: UIViewController {
     var label: UILabel?
     var showTheWorld :  UILabel?
     var recepieSteps : UILabel?
-    var uuid : String!
-    var username : String!
+//    var uuid : String!
+//    var username : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         self.view.backgroundColor = .white
+        
+        label = makeTitleLabel(withText: "What have you made? 😍", withSize: 25)
+        showTheWorld = makeTitleLabel(withText: "Show the your recepie to the world❤️", withSize: 25)
+        recepieSteps = makeTitleLabel(withText: "Please tell your secret!", withSize: 25)
         
         
         let txtFeild = UITextField()
@@ -58,7 +62,15 @@ class addViewController: UIViewController {
         navigationBar.items = [navigationItem]
         
         
-        
+            self.view.addSubview(navigationBar)
+            view.addSubview(label!)
+             view.addSubview(showTheWorld!)
+             view.addSubview(txtFeild)
+             view.addSubview(recepietxtFeild)
+             self.view.addSubview(button1)
+             self.view.addSubview(recepieSteps!)
+             self.view.addSubview(submitbtn)
+             self.view.addSubview(button)
         
         
         ///NAVIGATION BAR CONSTRAINTS
@@ -98,16 +110,16 @@ class addViewController: UIViewController {
         
         
         /// ATTACHING VIEWS CODE
-        self.view.addSubview(navigationBar)
-        view.addSubview(label!)
-        view.addSubview(showTheWorld!)
-        view.addSubview(txtFeild)
-        view.addSubview(recepietxtFeild)
-        self.view.addSubview(button1)
-        self.view.addSubview(recepieSteps!)
-        self.view.addSubview(submitbtn)
-        self.view.addSubview(button)
-        
+//        self.view.addSubview(navigationBar)
+//        view.addSubview(label!)
+//        view.addSubview(showTheWorld!)
+//        view.addSubview(txtFeild)
+//        view.addSubview(recepietxtFeild)
+//        self.view.addSubview(button1)
+//        self.view.addSubview(recepieSteps!)
+//        self.view.addSubview(submitbtn)
+//        self.view.addSubview(button)
+//
         
         // FIRST IMAGE ADD BUTTON CONSTRAINTS
         button.topAnchor.constraint(equalTo: showTheWorld!.bottomAnchor, constant: 10).isActive = true
@@ -150,15 +162,15 @@ class addViewController: UIViewController {
     
     @objc func submitClicked()
     {
-        let vc =  SignUpViewController()
-        if(label!.text!.isEmpty || recepieSteps!.text!.isEmpty || uuid.isEmpty)
-        {
-            
-        }else
-        {
-            APIFunctions.functions.addRecepies(userId: uuid, userName: username, title: label!.text!, steps: recepieSteps!.text!)
-        }
-        
+//        let vc =  SignUpViewController()
+//        if(label!.text!.isEmpty || recepieSteps!.text!.isEmpty || uuid.isEmpty)
+//        {
+//            
+//        }else
+//        {
+//            APIFunctions.functions.addRecepies(userId: uuid, userName: username, title: label!.text!, steps: recepieSteps!.text!)
+//        }
+//        
     }
     
     func makeTitleLabel(withText : String,withSize : CGFloat ) -> UILabel
